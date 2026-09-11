@@ -1,0 +1,4885 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0b0614">
+<title>Minha Plataforma</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+  --bg:#08050d;
+  --bg2:#10091a;
+  --card:#171022;
+  --card2:#20142f;
+  --purple:#8b3dff;
+  --purple2:#b56cff;
+  --text:#fff;
+  --muted:#a99db8;
+  --green:#24d17e;
+  --red:#ff416c;
+  --gold:#ffd84d;
+  --border:rgba(255,255,255,.09);
+}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 20% 0%,rgba(139,61,255,.22),transparent 35%),
+    radial-gradient(circle at 100% 20%,rgba(181,108,255,.12),transparent 30%),
+    var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+button,input,select,textarea{
+  font:inherit;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.app{
+  min-height:100vh;
+}
+
+.screen{
+  min-height:100vh;
+  padding-bottom:90px;
+}
+
+.container{
+  width:min(1100px,94%);
+  margin:auto;
+}
+
+/* LOGIN */
+
+.auth-screen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.auth-box{
+  width:min(440px,100%);
+  background:rgba(23,16,34,.94);
+  border:1px solid var(--border);
+  border-radius:28px;
+  padding:30px 22px;
+  box-shadow:0 20px 80px rgba(0,0,0,.5);
+}
+
+.logo{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.logo-icon{
+  width:82px;
+  height:82px;
+  margin:0 auto 14px;
+  border-radius:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:40px;
+  background:linear-gradient(135deg,#7025ff,#b45cff);
+  box-shadow:0 0 35px rgba(139,61,255,.45);
+}
+
+.logo h1{
+  font-size:28px;
+  font-weight:900;
+}
+
+.logo p{
+  color:var(--muted);
+  margin-top:6px;
+}
+
+.form{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.input{
+  width:100%;
+  background:#0d0814;
+  border:1px solid var(--border);
+  color:#fff;
+  border-radius:15px;
+  padding:15px;
+  outline:none;
+}
+
+.input:focus{
+  border-color:var(--purple);
+  box-shadow:0 0 0 3px rgba(139,61,255,.12);
+}
+
+.primary{
+  width:100%;
+  padding:15px;
+  border-radius:15px;
+  background:linear-gradient(135deg,#7428ff,#a854ff);
+  color:#fff;
+  font-weight:800;
+  box-shadow:0 8px 25px rgba(139,61,255,.25);
+}
+
+.secondary{
+  width:100%;
+  padding:14px;
+  border-radius:15px;
+  background:var(--card2);
+  color:#fff;
+  border:1px solid var(--border);
+}
+
+.text-button{
+  background:none;
+  color:var(--purple2);
+  padding:8px;
+  font-weight:700;
+}
+
+.auth-message{
+  color:var(--red);
+  text-align:center;
+  min-height:20px;
+  margin-top:5px;
+}
+
+/* HEADER */
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(8,5,13,.86);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+
+.topbar-inner{
+  width:min(1100px,94%);
+  min-height:68px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+}
+
+.brand-icon{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#7428ff,#b45cff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.user-mini{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.avatar{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  object-fit:cover;
+  background:var(--card2);
+  border:2px solid rgba(181,108,255,.5);
+}
+
+.user-mini span{
+  font-weight:700;
+}
+
+/* HOME */
+
+.hero{
+  padding:30px 0 20px;
+}
+
+.hero h2{
+  font-size:32px;
+  font-weight:900;
+}
+
+.hero p{
+  color:var(--muted);
+  margin-top:6px;
+}
+
+.stats-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:20px;
+}
+
+.stat-card{
+  background:rgba(23,16,34,.8);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:14px;
+}
+
+.stat-card small{
+  color:var(--muted);
+  display:block;
+  margin-bottom:5px;
+}
+
+.stat-card strong{
+  font-size:18px;
+}
+
+.games{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:16px;
+  margin-top:22px;
+}
+
+.game-card{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(145deg,#1b1029,#100917);
+  border:1px solid var(--border);
+  border-radius:25px;
+  padding:23px;
+  min-height:245px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.game-card::after{
+  content:"";
+  position:absolute;
+  width:170px;
+  height:170px;
+  right:-60px;
+  top:-60px;
+  background:rgba(139,61,255,.2);
+  filter:blur(20px);
+  border-radius:50%;
+}
+
+.game-icon{
+  font-size:48px;
+}
+
+.game-card h3{
+  font-size:25px;
+  margin-top:10px;
+}
+
+.game-card p{
+  color:var(--muted);
+  margin:7px 0 18px;
+}
+
+.play-btn{
+  position:relative;
+  z-index:2;
+  padding:14px;
+  border-radius:15px;
+  background:linear-gradient(135deg,#7428ff,#a854ff);
+  color:white;
+  font-weight:900;
+}
+
+/* PANELS */
+
+.panel{
+  background:rgba(23,16,34,.9);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:18px;
+  margin-top:18px;
+}
+
+.panel-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.panel-title h3{
+  font-size:21px;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.grid{
+  display:grid;
+  gap:12px;
+}
+
+.grid-2{
+  grid-template-columns:repeat(2,1fr);
+}
+
+.grid-3{
+  grid-template-columns:repeat(3,1fr);
+}
+
+/* GAME */
+
+.game-header{
+  padding:18px 0;
+}
+
+.game-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.game-title{
+  font-size:21px;
+  font-weight:900;
+}
+
+.money{
+  color:var(--gold);
+  font-size:19px;
+  font-weight:900;
+}
+
+.progress{
+  height:8px;
+  background:#24172f;
+  border-radius:99px;
+  overflow:hidden;
+  margin-top:14px;
+}
+
+.progress-bar{
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,#7428ff,#d178ff);
+  transition:width .3s;
+}
+
+.question-card{
+  margin-top:14px;
+  background:linear-gradient(145deg,#1c1129,#120a1b);
+  border:1px solid var(--border);
+  border-radius:25px;
+  padding:20px;
+}
+
+.question-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.difficulty{
+  padding:7px 10px;
+  border-radius:10px;
+  background:#2b193c;
+  color:#d8b8ff;
+  font-weight:800;
+}
+
+.timer{
+  margin:22px auto;
+  width:78px;
+  height:78px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:27px;
+  font-weight:900;
+  border:5px solid var(--purple);
+  box-shadow:0 0 25px rgba(139,61,255,.3);
+}
+
+.question{
+  font-size:23px;
+  line-height:1.3;
+  text-align:center;
+  font-weight:800;
+  margin:18px 0 22px;
+}
+
+.answers{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:11px;
+}
+
+.answer{
+  min-height:64px;
+  padding:13px;
+  border-radius:16px;
+  background:#21142f;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.08);
+  text-align:left;
+  font-weight:700;
+  transition:.2s;
+}
+
+.answer:hover{
+  border-color:var(--purple2);
+  transform:translateY(-1px);
+}
+
+.answer.correct{
+  background:rgba(36,209,126,.2);
+  border-color:var(--green);
+}
+
+.answer.wrong{
+  background:rgba(255,65,108,.2);
+  border-color:var(--red);
+}
+
+.answer:disabled{
+  cursor:default;
+}
+
+.helps{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:14px;
+}
+
+.help{
+  background:#1b1027;
+  color:#fff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px 8px;
+  font-weight:800;
+}
+
+.help:disabled{
+  opacity:.35;
+}
+
+.game-nav{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin:16px 0;
+}
+
+.game-nav button{
+  padding:11px 5px;
+  border-radius:13px;
+  background:#171022;
+  border:1px solid var(--border);
+  color:#ddd;
+  font-size:12px;
+  font-weight:700;
+}
+
+.game-nav button.active{
+  background:rgba(139,61,255,.25);
+  border-color:var(--purple);
+  color:#fff;
+}
+
+/* PROFILE */
+
+.profile-head{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.profile-avatar{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid var(--purple2);
+}
+
+.profile-name{
+  font-size:25px;
+  font-weight:900;
+}
+
+.level-badge{
+  display:inline-block;
+  margin-top:6px;
+  padding:5px 9px;
+  border-radius:9px;
+  background:#2a183b;
+  color:#d6b2ff;
+  font-size:12px;
+  font-weight:800;
+}
+
+.xp-wrap{
+  margin-top:18px;
+}
+
+.xp-info{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  margin-bottom:7px;
+}
+
+.xp-bar{
+  height:10px;
+  border-radius:99px;
+  background:#291a38;
+  overflow:hidden;
+}
+
+.xp-fill{
+  height:100%;
+  background:linear-gradient(90deg,#8b3dff,#d178ff);
+}
+
+/* LIST */
+
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.list-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px;
+  border-radius:15px;
+  background:#130c1c;
+  border:1px solid var(--border);
+}
+
+.list-main{
+  flex:1;
+  min-width:0;
+}
+
+.list-main strong{
+  display:block;
+}
+
+.list-main small{
+  color:var(--muted);
+}
+
+/* RANKING */
+
+.rank-item{
+  display:grid;
+  grid-template-columns:38px 45px 1fr auto;
+  align-items:center;
+  gap:10px;
+  padding:12px;
+  background:#130c1c;
+  border:1px solid var(--border);
+  border-radius:16px;
+}
+
+.rank-number{
+  font-size:20px;
+  font-weight:900;
+  text-align:center;
+}
+
+.rank-score{
+  text-align:right;
+}
+
+.rank-score strong{
+  display:block;
+  color:var(--gold);
+}
+
+.rank-score small{
+  color:var(--muted);
+}
+
+/* ACHIEVEMENTS */
+
+.achievement{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  padding:14px;
+  background:#130c1c;
+  border:1px solid var(--border);
+  border-radius:16px;
+}
+
+.achievement-icon{
+  width:48px;
+  height:48px;
+  flex:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:14px;
+  background:#2a183b;
+  font-size:24px;
+}
+
+.achievement.locked{
+  opacity:.42;
+}
+
+.achievement strong{
+  display:block;
+  margin-bottom:4px;
+}
+
+.achievement small{
+  color:var(--muted);
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+  position:fixed;
+  z-index:100;
+  bottom:0;
+  left:0;
+  right:0;
+  background:rgba(11,7,17,.94);
+  backdrop-filter:blur(18px);
+  border-top:1px solid var(--border);
+  padding:8px 6px calc(8px + env(safe-area-inset-bottom));
+}
+
+.bottom-inner{
+  width:min(700px,100%);
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+}
+
+.bottom-nav button{
+  background:none;
+  color:#887d94;
+  padding:7px 3px;
+  font-size:11px;
+}
+
+.bottom-nav button span{
+  display:block;
+  font-size:20px;
+  margin-bottom:3px;
+}
+
+.bottom-nav button.active{
+  color:#c894ff;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:200;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(8px);
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  padding:15px;
+}
+
+.modal-box{
+  width:min(520px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#160d21;
+  border:1px solid var(--border);
+  border-radius:25px;
+  padding:20px;
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.close{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  background:#27172f;
+  color:#fff;
+}
+
+/* RESULT */
+
+.result{
+  text-align:center;
+  padding:30px 5px;
+}
+
+.result-trophy{
+  font-size:65px;
+  margin-bottom:10px;
+}
+
+.result h2{
+  font-size:30px;
+}
+
+.prize{
+  font-size:35px;
+  font-weight:900;
+  color:var(--gold);
+  margin:15px 0;
+}
+
+.result-stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin:20px 0;
+}
+
+.result-stat{
+  background:#20132d;
+  border-radius:15px;
+  padding:14px;
+}
+
+.result-stat small{
+  color:var(--muted);
+  display:block;
+}
+
+/* RACE */
+
+.race-track{
+  position:relative;
+  overflow:hidden;
+  height:300px;
+  border-radius:22px;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #18111e 0px,
+      #18111e 38px,
+      #21172a 38px,
+      #21172a 40px
+    );
+  border:1px solid var(--border);
+  margin-top:16px;
+}
+
+.race-lane{
+  position:absolute;
+  left:0;
+  right:0;
+  height:50%;
+  border-bottom:1px dashed rgba(255,255,255,.18);
+}
+
+.car{
+  position:absolute;
+  left:20px;
+  width:58px;
+  height:32px;
+  border-radius:10px;
+  background:linear-gradient(135deg,#8b3dff,#d178ff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  transition:left .25s;
+}
+
+.car.one{
+  top:65px;
+}
+
+.car.two{
+  top:205px;
+}
+
+.race-controls{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:15px;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  z-index:300;
+  left:50%;
+  bottom:90px;
+  transform:translateX(-50%) translateY(20px);
+  opacity:0;
+  pointer-events:none;
+  background:#24132f;
+  border:1px solid var(--border);
+  padding:13px 17px;
+  border-radius:14px;
+  box-shadow:0 15px 40px rgba(0,0,0,.45);
+  transition:.25s;
+  max-width:90%;
+  text-align:center;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:650px){
+  .container{
+    width:92%;
+  }
+
+  .hero h2{
+    font-size:27px;
+  }
+
+  .stats-row{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+
+  .stat-card{
+    padding:10px 8px;
+  }
+
+  .stat-card strong{
+    font-size:15px;
+  }
+
+  .answers{
+    grid-template-columns:1fr;
+  }
+
+  .question{
+    font-size:20px;
+  }
+
+  .grid-3{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .rank-item{
+    grid-template-columns:30px 40px 1fr auto;
+  }
+}
+
+@media(max-width:380px){
+  .bottom-nav button{
+    font-size:9px;
+  }
+
+  .bottom-nav button span{
+    font-size:18px;
+  }
+
+  .helps{
+    gap:6px;
+  }
+
+  .help{
+    font-size:12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="app"></div>
+
+<div id="toast" class="toast"></div>
+
+<script type="module">
+
+/* ============================================================
+   FIREBASE
+============================================================ */
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  updateProfile
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+  addDoc,
+  collection,
+  query,
+  where,
+  orderBy,
+  limit,
+  getDocs,
+  onSnapshot,
+  serverTimestamp,
+  arrayUnion,
+  arrayRemove
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey:"AIzaSyB-0j37BKkr0jt3B6NCl6-fNe3bqeQia08",
+  authDomain:"desafio-do-milhao.firebaseapp.com",
+  projectId:"desafio-do-milhao",
+  storageBucket:"desafio-do-milhao.firebasestorage.app",
+  messagingSenderId:"303629660012",
+  appId:"1:303629660012:web:61bf5af93d9824e8100d49",
+  measurementId:"G-0TZ68JLKJR"
+};
+
+const firebaseApp=initializeApp(firebaseConfig);
+const auth=getAuth(firebaseApp);
+const db=getFirestore(firebaseApp);
+
+/* ============================================================
+   ESTADO
+============================================================ */
+
+let currentUser=null;
+let userData=null;
+let currentPage="home";
+let currentGame="million";
+
+let gameState=null;
+let timerInterval=null;
+
+let localPlayers=[];
+
+let raceState={
+  players:[],
+  running:false,
+  winner:null
+};
+
+let audioContext=null;
+let musicTimer=null;
+let musicEnabled=true;
+let soundEnabled=true;
+
+/* ============================================================
+   UTILITÁRIOS
+============================================================ */
+
+const $=id=>document.getElementById(id);
+
+function esc(value){
+  return String(value??"")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function money(v){
+  return "R$ "+Number(v||0).toLocaleString("pt-BR");
+}
+
+function toast(msg){
+  const el=$("toast");
+  if(!el)return;
+  el.textContent=msg;
+  el.classList.add("show");
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer=setTimeout(()=>{
+    el.classList.remove("show");
+  },2600);
+}
+
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function uid(){
+  return Math.random().toString(36).slice(2)+Date.now().toString(36);
+}
+
+function levelFromXP(xp){
+  return Math.floor(Math.sqrt(Number(xp||0)/100))+1;
+}
+
+function xpForLevel(level){
+  return Math.pow(Math.max(0,level-1),2)*100;
+}
+
+function xpToNext(level){
+  return Math.pow(level,2)*100;
+}
+
+function getTitle(level,record){
+  if(record>=1000000)return "Lenda";
+  if(level>=20)return "Milionário";
+  if(level>=15)return "Especialista";
+  if(level>=10)return "Mestre";
+  if(level>=6)return "Conhecedor";
+  if(level>=3)return "Estudante";
+  return "Novato";
+}
+
+function todayKey(){
+  const d=new Date();
+  return d.toISOString().slice(0,10);
+}
+
+/* ============================================================
+   PERGUNTAS
+============================================================ */
+
+const PRIZES=[
+  1000,
+  2000,
+  5000,
+  10000,
+  20000,
+  30000,
+  50000,
+  100000,
+  150000,
+  200000,
+  300000,
+  400000,
+  500000,
+  750000,
+  1000000
+];
+
+const DIFFICULTIES=[
+  "FÁCIL","FÁCIL","FÁCIL",
+  "MÉDIO","MÉDIO","MÉDIO",
+  "DIFÍCIL","DIFÍCIL","DIFÍCIL",
+  "MUITO DIFÍCIL","MUITO DIFÍCIL","MUITO DIFÍCIL",
+  "ESPECIALISTA","ESPECIALISTA","ESPECIALISTA"
+];
+
+const QUESTION_BANK={
+
+"Conhecimentos Gerais":[
+["Qual é o maior planeta do Sistema Solar?","Júpiter",["Marte","Terra","Saturno"]],
+["Quantos dias tem um ano bissexto?","366",["364","365","367"]],
+["Qual é o símbolo químico do ouro?","Au",["Ag","Fe","Go"]],
+["Qual é o maior oceano da Terra?","Pacífico",["Atlântico","Índico","Ártico"]],
+["Quantos lados tem um hexágono?","6",["5","7","8"]],
+["Qual animal é conhecido como rei da selva?","Leão",["Tigre","Elefante","Lobo"]],
+["Qual é o idioma mais falado no Brasil?","Português",["Espanhol","Inglês","Francês"]],
+["Qual é a estrela do Sistema Solar?","Sol",["Lua","Sirius","Vênus"]],
+["Quantas cores possui o arco-íris tradicionalmente?","7",["5","6","8"]],
+["Qual metal é líquido em temperatura ambiente?","Mercúrio",["Ferro","Alumínio","Cobre"]],
+["Qual é o maior continente?","Ásia",["África","Europa","América"]],
+["Qual instrumento mede temperatura?","Termômetro",["Barômetro","Higrômetro","Altímetro"]],
+["Qual é o satélite natural da Terra?","Lua",["Marte","Sol","Europa"]],
+["Quantos minutos existem em uma hora?","60",["30","50","100"]],
+["Qual é o menor número primo?","2",["1","3","0"]],
+["Qual animal produz lã?","Ovelha",["Cavalo","Porco","Galinha"]],
+["Qual é a capital da França?","Paris",["Roma","Madrid","Lisboa"]],
+["Qual é o formato aproximado da Terra?","Esférico",["Cúbico","Plano","Triangular"]],
+["Qual é o maior mamífero do mundo?","Baleia-azul",["Elefante","Girafa","Orca"]],
+["Quantos meses possui um ano?","12",["10","11","13"]],
+["Qual é o planeta vermelho?","Marte",["Vênus","Júpiter","Netuno"]],
+["Qual órgão bombeia sangue?","Coração",["Pulmão","Fígado","Rim"]],
+["Qual é a moeda oficial do Japão?","Iene",["Won","Yuan","Dólar"]],
+["Qual é o país conhecido pelo formato de bota?","Itália",["Grécia","Espanha","Portugal"]],
+["Quantas patas tem uma aranha?","8",["6","10","12"]],
+
+"Ciência":[
+["Qual gás é essencial para a respiração humana?","Oxigênio",["Hélio","Hidrogênio","Neônio"]],
+["Qual é a unidade básica da vida?","Célula",["Átomo","Tecido","Órgão"]],
+["Qual planeta é conhecido por seus anéis mais visíveis?","Saturno",["Marte","Mercúrio","Vênus"]],
+["Qual força nos mantém na superfície da Terra?","Gravidade",["Magnetismo","Pressão","Fricção"]],
+["Qual órgão realiza grande parte da filtragem do sangue?","Rins",["Pulmões","Estômago","Coração"]],
+["Qual vitamina é produzida pela exposição ao Sol?","Vitamina D",["Vitamina C","Vitamina B12","Vitamina K"]],
+["Qual é o pH de uma solução neutra?","7",["0","5","14"]],
+["Qual partícula possui carga negativa?","Elétron",["Próton","Nêutron","Fóton"]],
+["Qual é o centro de um átomo?","Núcleo",["Elétron","Órbita","Molécula"]],
+["A água ferve aproximadamente a quantos graus Celsius ao nível do mar?","100",["50","80","120"]],
+["Qual sistema transporta sangue pelo corpo?","Circulatório",["Digestivo","Nervoso","Respiratório"]],
+["Qual é o símbolo químico do oxigênio?","O",["Ox","Og","X"]],
+["Qual fenômeno causa o dia e a noite?","Rotação da Terra",["Translação","Eclipse","Maré"]],
+["Qual ciência estuda os seres vivos?","Biologia",["Geologia","Astronomia","Física"]],
+["Qual ciência estuda os astros?","Astronomia",["Química","Biologia","Ecologia"]],
+["Qual é a fórmula química da água?","H₂O",["CO₂","O₂","NaCl"]],
+["Qual é o osso mais longo do corpo humano?","Fêmur",["Tíbia","Úmero","Rádio"]],
+["Qual órgão é responsável principalmente pela troca gasosa?","Pulmões",["Fígado","Pâncreas","Baço"]],
+["Qual planeta está mais próximo do Sol?","Mercúrio",["Vênus","Terra","Marte"]],
+["Qual é a velocidade aproximada da luz no vácuo?","300 mil km/s",["30 mil km/s","3 mil km/s","3 milhões km/s"]],
+["Qual processo as plantas usam para produzir alimento?","Fotossíntese",["Fermentação","Respiração","Digestão"]],
+["Qual molécula carrega informação genética?","DNA",["ATP","RNA mensageiro","Glicose"]],
+["Qual é a unidade de corrente elétrica?","Ampère",["Volt","Watt","Ohm"]],
+["Qual é a unidade de energia no SI?","Joule",["Newton","Pascal","Kelvin"]],
+["Qual é a unidade de força?","Newton",["Joule","Watt","Volt"]],
+
+"Geografia":[
+["Qual é a capital do Brasil?","Brasília",["Rio de Janeiro","São Paulo","Salvador"]],
+["Qual é o maior país do mundo em território?","Rússia",["Canadá","China","Brasil"]],
+["Qual é o maior rio em volume de água?","Amazonas",["Nilo","Mississipi","Danúbio"]],
+["Em qual continente fica o Egito?","África",["Ásia","Europa","Oceania"]],
+["Qual é a capital da Argentina?","Buenos Aires",["Córdoba","Rosário","Mendoza"]],
+["Qual oceano banha a costa leste do Brasil?","Atlântico",["Pacífico","Índico","Ártico"]],
+["Qual é a maior floresta tropical do mundo?","Amazônia",["Congo","Taiga","Mata Atlântica"]],
+["Qual país tem formato aproximado de um dragão?","Vietnã",["Chile","Nepal","Islândia"]],
+["Qual é a capital da Austrália?","Canberra",["Sydney","Melbourne","Perth"]],
+["Qual país possui a cidade de Machu Picchu?","Peru",["Bolívia","Chile","Equador"]],
+["Qual é o deserto quente mais extenso do mundo?","Saara",["Atacama","Kalahari","Gobi"]],
+["Qual é a capital de Portugal?","Lisboa",["Porto","Coimbra","Braga"]],
+["Qual país possui a maior população da América do Sul?","Brasil",["Argentina","Colômbia","Peru"]],
+["Qual é a capital do Canadá?","Ottawa",["Toronto","Vancouver","Montreal"]],
+["Qual montanha é tradicionalmente considerada a mais alta do mundo?","Everest",["K2","Aconcágua","Kilimanjaro"]],
+["Qual país é conhecido como Terra do Sol Nascente?","Japão",["China","Coreia do Sul","Tailândia"]],
+["Qual é a capital da Itália?","Roma",["Milão","Veneza","Nápoles"]],
+["Qual país possui a cidade de Barcelona?","Espanha",["Portugal","Itália","França"]],
+["Qual é a capital do México?","Cidade do México",["Cancún","Guadalajara","Monterrey"]],
+["Qual é o menor continente em área?","Oceania",["Europa","Antártida","América do Sul"]],
+["Qual país tem a maior parte da Amazônia?","Brasil",["Peru","Colômbia","Venezuela"]],
+["Qual é a capital da Alemanha?","Berlim",["Munique","Hamburgo","Frankfurt"]],
+["Qual país tem a cidade de Cairo?","Egito",["Marrocos","Jordânia","Tunísia"]],
+["Qual é a capital da Espanha?","Madrid",["Barcelona","Sevilha","Valência"]],
+["Qual país é atravessado pelo rio Nilo?","Egito",["Índia","México","Japão"]],
+
+"História":[
+["Quem proclamou a Independência do Brasil em 1822?","Dom Pedro I",["Dom Pedro II","Tiradentes","Getúlio Vargas"]],
+["Em que ano ocorreu a Independência do Brasil?","1822",["1500","1889","1808"]],
+["Quem foi o primeiro presidente do Brasil?","Deodoro da Fonseca",["Getúlio Vargas","Juscelino Kubitschek","Floriano Peixoto"]],
+["Qual civilização construiu Machu Picchu?","Inca",["Maia","Romana","Egípcia"]],
+["Qual povo construiu as pirâmides de Gizé?","Egípcios",["Romanos","Gregos","Persas"]],
+["Quem foi conhecido como Rei do Futebol?","Pelé",["Zico","Romário","Garrincha"]],
+["Em que ano terminou a Segunda Guerra Mundial?","1945",["1939","1942","1950"]],
+["Qual evento marcou o início da Revolução Francesa?","Queda da Bastilha",["Queda de Roma","Tratado de Versalhes","Guerra dos Cem Anos"]],
+["Quem escreveu a obra Dom Quixote?","Miguel de Cervantes",["Shakespeare","Camões","Dante"]],
+["Qual império tinha Roma como centro?","Império Romano",["Império Asteca","Império Persa","Império Inca"]],
+["Quem foi Tiradentes?","Líder da Inconfidência Mineira",["Imperador","Presidente","Explorador"]],
+["Qual documento declarou a independência das Treze Colônias?","Declaração de Independência dos EUA",["Carta Magna","Constituição Francesa","Tratado de Paris"]],
+["Qual civilização criou a democracia ateniense?","Gregos",["Romanos","Egípcios","Fenícios"]],
+["Quem foi o primeiro imperador do Brasil?","Dom Pedro I",["Dom Pedro II","Deodoro","Getúlio"]],
+["Em que ano foi proclamada a República no Brasil?","1889",["1822","1888","1900"]],
+["Quem assinou a Lei Áurea?","Princesa Isabel",["Dom Pedro II","Maria Leopoldina","Chiquinha Gonzaga"]],
+["Qual guerra ocorreu entre 1914 e 1918?","Primeira Guerra Mundial",["Segunda Guerra","Guerra Fria","Guerra do Vietnã"]],
+["Qual cidade foi destruída pela erupção do Vesúvio?","Pompeia",["Atenas","Esparta","Cartago"]],
+["Quem foi Napoleão Bonaparte?","Imperador francês",["Rei inglês","Czar russo","Presidente americano"]],
+["Qual era o nome do navio de Charles Darwin em sua viagem científica?","HMS Beagle",["Titanic","Endeavour","Victoria"]],
+["Qual tratado encerrou oficialmente a Primeira Guerra Mundial?","Tratado de Versalhes",["Tratado de Tordesilhas","Tratado de Roma","Tratado de Paris"]],
+["Qual civilização utilizava hieróglifos?","Egípcia",["Romana","Inca","Viking"]],
+["Quem foi Mahatma Gandhi?","Líder da independência indiana",["Imperador chinês","General romano","Cientista"]],
+["Qual acontecimento ocorreu em 1500 para a história do Brasil?","Chegada dos portugueses",["Independência","Proclamação da República","Abolição"]],
+["Qual foi a capital do Brasil antes de Brasília?","Rio de Janeiro",["Salvador","São Paulo","Recife"]],
+
+"Tecnologia":[
+["O que significa CPU?","Unidade Central de Processamento",["Controle Principal Universal","Central de Programas","Unidade de Memória"]],
+["Qual empresa criou o Android originalmente?","Android Inc.",["Microsoft","IBM","Nokia"]],
+["Qual linguagem é usada para estruturar páginas web?","HTML",["SQL","Python","C++"]],
+["Qual linguagem estiliza páginas web?","CSS",["HTML","Java","SQL"]],
+["Qual linguagem é muito usada para interatividade em páginas web?","JavaScript",["XML","CSS","SQL"]],
+["O que significa URL?","Uniform Resource Locator",["Universal Runtime Link","User Resource Line","Unified Routing Layer"]],
+["Qual empresa criou o Windows?","Microsoft",["Apple","Google","IBM"]],
+["Qual empresa criou o iPhone?","Apple",["Samsung","Microsoft","Google"]],
+["O que é Wi-Fi?","Tecnologia de rede sem fio",["Tipo de bateria","Sistema operacional","Linguagem"]],
+["O que significa RAM?","Memória de acesso aleatório",["Memória permanente","Processador gráfico","Rede automática"]],
+["Qual sistema operacional é baseado no kernel Linux e usado em muitos celulares?","Android",["iOS","Windows Phone","DOS"]],
+["O que é um navegador?","Programa para acessar páginas web",["Antivírus","Processador","Banco de dados"]],
+["Qual empresa desenvolve o navegador Chrome?","Google",["Apple","Mozilla","Microsoft"]],
+["Qual empresa desenvolve o Firefox?","Mozilla",["Google","Apple","Meta"]],
+["O que é inteligência artificial?","Tecnologia capaz de realizar tarefas associadas à inteligência",["Um tipo de cabo","Uma bateria","Um navegador"]],
+["O que é armazenamento em nuvem?","Guardar dados em servidores acessíveis pela internet",["Guardar apenas na RAM","Guardar em papel","Guardar no teclado"]],
+["O que é código-fonte?","Texto que define um programa",["Imagem do programa","Senha do usuário","Arquivo de música"]],
+["O que é um algoritmo?","Sequência de instruções para resolver um problema",["Tipo de monitor","Sistema de áudio","Cabo"]],
+["Qual protocolo é usado para páginas web seguras?","HTTPS",["FTP","SMTP","IRC"]],
+["O que significa USB?","Universal Serial Bus",["Universal System Battery","User Service Browser","Unified Software Base"]],
+["Qual tecnologia permite pagamento aproximando o celular?","NFC",["GPS","RAM","HDMI"]],
+["O que é Bluetooth?","Comunicação sem fio de curto alcance",["Antivírus","Sistema operacional","Banco de dados"]],
+["O que é Git?","Sistema de controle de versões",["Linguagem de programação","Navegador","Banco de dados"]],
+["O que é GitHub?","Plataforma para hospedar e colaborar em código",["Sistema operacional","Editor de fotos","Fabricante de celulares"]],
+["O que é Firebase?","Plataforma de serviços para desenvolvimento de aplicativos",["Processador","Linguagem","Sistema de arquivos"]],
+
+"Português":[
+["Qual é o plural de 'cidadão'?","Cidadãos",["Cidadões","Cidadães","Cidadans"]],
+["Qual palavra é um substantivo?","Casa",["Bonito","Correr","Rapidamente"]],
+["Qual é o antônimo de 'rápido'?","Lento",["Ágil","Veloz","Forte"]],
+["Qual é o sinônimo de 'feliz'?","Contente",["Triste","Bravo","Cansado"]],
+["Qual palavra está corretamente acentuada?","Lâmpada",["Lampada","Lâmpáda","Lâmpâda"]],
+["Qual é o feminino de 'ator'?","Atriz",["Atores","Atora","Atriza"]],
+["Qual é o plural de 'pão'?","Pães",["Pãos","Pãeses","Pãezes"]],
+["Qual palavra é um verbo?","Correr",["Azul","Mesa","Bonito"]],
+["Qual é o aumentativo de 'casa'?","Casarão",["Casinha","Casal","Caseta"]],
+["Qual é o diminutivo de 'flor'?","Florzinha",["Florão","Floresta","Floral"]],
+["Qual é o sujeito em 'João estudou'?","João",["Estudou","João estudou","Nenhum"]],
+["Qual é o coletivo de peixes?","Cardume",["Manada","Alcateia","Enxame"]],
+["Qual é o contrário de 'escuro'?","Claro",["Preto","Noite","Baixo"]],
+["Qual é o plural de 'papel'?","Papéis",["Papeis","Papels","Papéus"]],
+["Qual palavra é um adjetivo?","Bonito",["Correr","Casa","Rapidamente"]],
+["Qual é o sinônimo de 'início'?","Começo",["Fim","Meio","Pausa"]],
+["Qual é o antônimo de 'difícil'?","Fácil",["Grande","Longo","Rápido"]],
+["Qual é o plural de 'animal'?","Animais",["Animals","Animalis","Animales"]],
+["Qual palavra apresenta dígrafo?","Chuva",["Casa","Mesa","Bola"]],
+["Qual é a primeira pessoa do singular?","Eu",["Tu","Ele","Nós"]],
+["Qual é a terceira pessoa do singular?","Ele",["Eu","Tu","Nós"]],
+["Qual é o plural de 'mão'?","Mãos",["Mões","Mães","Mãoses"]],
+["Qual palavra é um pronome?","Ela",["Casa","Correr","Azul"]],
+["Qual é o superlativo de 'bom'?","Ótimo",["Bomíssimo","Mais bom","Bons"]],
+["Qual é o antônimo de 'verdadeiro'?","Falso",["Correto","Real","Exato"]],
+
+"Matemática":[
+["Quanto é 7 + 8?","15",["14","16","17"]],
+["Quanto é 9 × 6?","54",["45","48","63"]],
+["Quanto é 100 ÷ 4?","25",["20","30","40"]],
+["Quanto é 12²?","144",["124","132","154"]],
+["Quanto é 15 + 27?","42",["40","41","43"]],
+["Quanto é 81 ÷ 9?","9",["8","7","6"]],
+["Quanto é 13 × 7?","91",["81","87","97"]],
+["Quanto é 250 - 75?","175",["165","185","150"]],
+["Quanto é 5³?","125",["25","75","150"]],
+["Quanto é 18 × 5?","90",["80","85","95"]],
+["Quanto é 144 ÷ 12?","12",["10","11","14"]],
+["Quanto é 37 + 48?","85",["75","84","86"]],
+["Quanto é 200 - 137?","63",["53","73","67"]],
+["Quanto é 14 × 9?","126",["116","124","136"]],
+["Quanto é 16²?","256",["216","246","266"]],
+["Quanto é 3/4 de 100?","75",["25","50","80"]],
+["Quanto é 20% de 250?","50",["40","60","75"]],
+["Quanto é 2⁵?","32",["16","25","64"]],
+["Quanto é 15 × 12?","180",["150","170","200"]],
+["Quanto é 999 + 1?","1000",["999","1001","1100"]],
+["Se x + 10 = 25, quanto vale x?","15",["10","20","35"]],
+["Quanto é 11 × 11?","121",["111","131","101"]],
+["Quanto é 225 ÷ 15?","15",["12","14","18"]],
+["Quanto é 17 + 19?","36",["34","35","37"]],
+["Quanto é 500 - 225?","275",["265","285","325"]]
+
+];
+
+/* ============================================================
+   GERADOR DE QUESTÕES MATEMÁTICAS
+============================================================ */
+
+function generateMathQuestions(count=100){
+
+  const result=[];
+
+  for(let i=0;i<count;i++){
+
+    const type=i%5;
+
+    let q,a,w1,w2,w3;
+
+    if(type===0){
+      const x=Math.floor(Math.random()*50)+10;
+      const y=Math.floor(Math.random()*40)+5;
+      a=String(x+y);
+      q=`Quanto é ${x} + ${y}?`;
+      w1=String(x+y+3);
+      w2=String(x+y-2);
+      w3=String(x+y+7);
+    }
+
+    else if(type===1){
+      const x=Math.floor(Math.random()*30)+10;
+      const y=Math.floor(Math.random()*9)+2;
+      a=String(x*y);
+      q=`Quanto é ${x} × ${y}?`;
+      w1=String(x*y+5);
+      w2=String(x*y-4);
+      w3=String(x*y+9);
+    }
+
+    else if(type===2){
+      const y=Math.floor(Math.random()*20)+2;
+      const aNum=y*Math.floor(Math.random()*10+2);
+      a=String(aNum/y);
+      q=`Quanto é ${aNum} ÷ ${y}?`;
+      w1=String(Number(a)+1);
+      w2=String(Math.max(1,Number(a)-1));
+      w3=String(Number(a)+2);
+    }
+
+    else if(type===3){
+      const x=Math.floor(Math.random()*20)+2;
+      a=String(x*x);
+      q=`Quanto é ${x}²?`;
+      w1=String(x*x+10);
+      w2=String(x*x-5);
+      w3=String(x*x+20);
+    }
+
+    else{
+      const base=Math.floor(Math.random()*9)+2;
+      const pct=[10,20,25,50][Math.floor(Math.random()*4)];
+      a=String(base*10*pct/100);
+      q=`Quanto é ${pct}% de ${base*10}?`;
+      w1=String(Number(a)+5);
+      w2=String(Math.max(1,Number(a)-5));
+      w3=String(Number(a)+10);
+    }
+
+    result.push([q,a,[w1,w2,w3]]);
+  }
+
+  return result;
+}
+
+QUESTION_BANK["Matemática"]=[
+  ...QUESTION_BANK["Matemática"],
+  ...generateMathQuestions(100)
+];
+
+/* ============================================================
+   CONQUISTAS
+============================================================ */
+
+const ACHIEVEMENTS=[
+  {
+    id:"first_win",
+    name:"Primeira Vitória",
+    desc:"Conquiste sua primeira vitória.",
+    icon:"🏆",
+    check:s=>s.victories>=1
+  },
+  {
+    id:"answers10",
+    name:"Aquecendo",
+    desc:"Acertar 10 perguntas.",
+    icon:"🔥",
+    check:s=>s.correct>=10
+  },
+  {
+    id:"answers50",
+    name:"Conhecedor",
+    desc:"Acertar 50 perguntas.",
+    icon:"🧠",
+    check:s=>s.correct>=50
+  },
+  {
+    id:"answers100",
+    name:"Mente Brilhante",
+    desc:"Acertar 100 perguntas.",
+    icon:"💎",
+    check:s=>s.correct>=100
+  },
+  {
+    id:"100k",
+    name:"Seis Dígitos",
+    desc:"Chegar a R$100.000.",
+    icon:"💰",
+    check:s=>s.record>=100000
+  },
+  {
+    id:"500k",
+    name:"Quase Milionário",
+    desc:"Chegar a R$500.000.",
+    icon:"💵",
+    check:s=>s.record>=500000
+  },
+  {
+    id:"million",
+    name:"Milionário",
+    desc:"Chegar a R$1.000.000.",
+    icon:"👑",
+    check:s=>s.record>=1000000
+  },
+  {
+    id:"games10",
+    name:"Frequente",
+    desc:"Jogar 10 partidas.",
+    icon:"🎮",
+    check:s=>s.games>=10
+  },
+  {
+    id:"games50",
+    name:"Veterano",
+    desc:"Jogar 50 partidas.",
+    icon:"⭐",
+    check:s=>s.games>=50
+  },
+  {
+    id:"streak5",
+    name:"Em Sequência",
+    desc:"Conseguir sequência de 5 acertos.",
+    icon:"🔥",
+    check:s=>s.bestStreak>=5
+  },
+  {
+    id:"streak10",
+    name:"Imparável",
+    desc:"Conseguir sequência de 10 acertos.",
+    icon:"⚡",
+    check:s=>s.bestStreak>=10
+  },
+  {
+    id:"no_help",
+    name:"Sem Ajuda",
+    desc:"Vencer uma partida sem usar ajuda.",
+    icon:"🛡️",
+    check:s=>s.noHelpWins>=1
+  }
+];
+
+/* ============================================================
+   DADOS PADRÃO DO USUÁRIO
+============================================================ */
+
+function defaultUserData(user,name,email){
+
+  return {
+    uid:user.uid,
+    username:name || user.displayName || email.split("@")[0],
+    email:email,
+    photo:user.photoURL || "",
+    xp:0,
+    level:1,
+    coins:0,
+    title:"Novato",
+    record:0,
+    highestPrize:0,
+
+    stats:{
+      games:0,
+      victories:0,
+      defeats:0,
+      correct:0,
+      wrong:0,
+      answered:0,
+      bestStreak:0,
+      noHelpWins:0,
+      dailyCompleted:0
+    },
+
+    achievements:[],
+    friends:[],
+    friendRequestsSent:[],
+    friendRequestsReceived:[],
+    settings:{
+      sound:true,
+      music:true,
+      theme:"dark"
+    },
+
+    online:true,
+    lastSeen:Date.now()
+  };
+}
+
+/* ============================================================
+   AUTH
+============================================================ */
+
+onAuthStateChanged(auth,async user=>{
+
+  currentUser=user;
+
+  if(user){
+
+    await loadUser();
+
+    renderApp();
+
+    startPresence();
+
+  }else{
+
+    userData=null;
+    renderLogin();
+
+  }
+});
+
+async function loadUser(){
+
+  const ref=doc(db,"Usuarios",currentUser.uid);
+  const snap=await getDoc(ref);
+
+  if(snap.exists()){
+
+    userData={
+      ...defaultUserData(
+        currentUser,
+        currentUser.displayName,
+        currentUser.email
+      ),
+      ...snap.data()
+    };
+
+    userData.stats={
+      ...defaultUserData(currentUser,currentUser.displayName,currentUser.email).stats,
+      ...(snap.data().stats||{})
+    };
+
+    userData.settings={
+      ...defaultUserData(currentUser,currentUser.displayName,currentUser.email).settings,
+      ...(snap.data().settings||{})
+    };
+
+  }else{
+
+    userData=defaultUserData(
+      currentUser,
+      currentUser.displayName,
+      currentUser.email
+    );
+
+    await setDoc(ref,userData);
+  }
+
+  const level=levelFromXP(userData.xp);
+  const title=getTitle(level,userData.record);
+
+  if(level!==userData.level || title!==userData.title){
+
+    userData.level=level;
+    userData.title=title;
+
+    await updateDoc(ref,{
+      level,
+      title
+    });
+  }
+}
+
+async function saveUser(){
+
+  if(!currentUser||!userData)return;
+
+  userData.level=levelFromXP(userData.xp);
+  userData.title=getTitle(userData.level,userData.record);
+
+  await setDoc(
+    doc(db,"Usuarios",currentUser.uid),
+    userData,
+    {merge:true}
+  );
+}
+
+/* ============================================================
+   LOGIN
+============================================================ */
+
+function renderLogin(){
+
+  $("app").innerHTML=`
+
+  <div class="auth-screen">
+
+    <div class="auth-box">
+
+      <div class="logo">
+        <div class="logo-icon">🎮</div>
+        <h1>MINHA PLATAFORMA</h1>
+        <p>Jogos • Desafios • Ranking</p>
+      </div>
+
+      <div id="loginForm">
+
+        <form class="form" id="formLogin">
+
+          <input
+            class="input"
+            id="loginEmail"
+            type="email"
+            placeholder="Email"
+            autocomplete="email"
+            required
+          >
+
+          <input
+            class="input"
+            id="loginPassword"
+            type="password"
+            placeholder="Senha"
+            autocomplete="current-password"
+            required
+          >
+
+          <button class="primary" type="submit">
+            ENTRAR
+          </button>
+
+        </form>
+
+        <p class="auth-message" id="authMessage"></p>
+
+        <button
+          class="text-button"
+          style="width:100%;margin-top:10px"
+          onclick="showRegister()"
+        >
+          Ainda não tenho uma conta
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+  `;
+
+  $("formLogin").addEventListener("submit",async e=>{
+
+    e.preventDefault();
+
+    const email=$("loginEmail").value.trim();
+    const password=$("loginPassword").value;
+
+    try{
+
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+    }catch(err){
+
+      $("authMessage").textContent=
+        "Email ou senha incorretos.";
+
+    }
+  });
+}
+
+window.showRegister=function(){
+
+  $("loginForm").innerHTML=`
+
+    <form class="form" id="formRegister">
+
+      <input
+        class="input"
+        id="registerName"
+        type="text"
+        placeholder="Nome de usuário"
+        maxlength="24"
+        required
+      >
+
+      <input
+        class="input"
+        id="registerEmail"
+        type="email"
+        placeholder="Email"
+        required
+      >
+
+      <input
+        class="input"
+        id="registerPassword"
+        type="password"
+        placeholder="Senha"
+        minlength="6"
+        required
+      >
+
+      <button class="primary" type="submit">
+        CRIAR CONTA
+      </button>
+
+    </form>
+
+    <p class="auth-message" id="authMessage"></p>
+
+    <button
+      class="text-button"
+      style="width:100%;margin-top:10px"
+      onclick="renderLogin()"
+    >
+      Já tenho uma conta
+    </button>
+  `;
+
+  $("formRegister").addEventListener("submit",async e=>{
+
+    e.preventDefault();
+
+    const name=$("registerName").value.trim();
+    const email=$("registerEmail").value.trim();
+    const password=$("registerPassword").value;
+
+    if(name.length<2){
+
+      $("authMessage").textContent=
+        "Escolha um nome com pelo menos 2 caracteres.";
+
+      return;
+    }
+
+    try{
+
+      const cred=await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      await updateProfile(
+        cred.user,
+        {displayName:name}
+      );
+
+      const data=defaultUserData(
+        cred.user,
+        name,
+        email
+      );
+
+      await setDoc(
+        doc(db,"Usuarios",cred.user.uid),
+        data
+      );
+
+    }catch(err){
+
+      let msg="Não foi possível criar a conta.";
+
+      if(err.code==="auth/email-already-in-use")
+        msg="Este email já está cadastrado.";
+
+      if(err.code==="auth/weak-password")
+        msg="A senha precisa ter pelo menos 6 caracteres.";
+
+      $("authMessage").textContent=msg;
+    }
+  });
+};
+
+/* ============================================================
+   APP PRINCIPAL
+============================================================ */
+
+function renderApp(){
+
+  if(!currentUser||!userData)return;
+
+  $("app").innerHTML=`
+
+    <div class="app">
+
+      <header class="topbar">
+
+        <div class="topbar-inner">
+
+          <div class="brand">
+            <div class="brand-icon">🎮</div>
+            <span>MINHA PLATAFORMA</span>
+          </div>
+
+          <button
+            class="user-mini"
+            style="background:none;color:white"
+            onclick="navigate('profile')"
+          >
+
+            <img
+              class="avatar"
+              src="${esc(userData.photo||placeholderAvatar())}"
+            >
+
+            <span>${esc(userData.username)}</span>
+
+          </button>
+
+        </div>
+
+      </header>
+
+      <main id="main"></main>
+
+      <nav class="bottom-nav">
+
+        <div class="bottom-inner">
+
+          <button onclick="navigate('home')" id="nav-home">
+            <span>🏠</span>Início
+          </button>
+
+          <button onclick="navigate('ranking')" id="nav-ranking">
+            <span>🏆</span>Ranking
+          </button>
+
+          <button onclick="navigate('friends')" id="nav-friends">
+            <span>👥</span>Amigos
+          </button>
+
+          <button onclick="navigate('notifications')" id="nav-notifications">
+            <span>🔔</span>Avisos
+          </button>
+
+          <button onclick="navigate('profile')" id="nav-profile">
+            <span>👤</span>Perfil
+          </button>
+
+        </div>
+
+      </nav>
+
+    </div>
+  `;
+
+  navigate(currentPage);
+}
+
+function placeholderAvatar(){
+
+  return "data:image/svg+xml;charset=UTF-8,"+
+    encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg"
+           width="200" height="200">
+        <rect width="100%" height="100%"
+              fill="#24152f"/>
+        <text x="50%" y="54%"
+              text-anchor="middle"
+              font-size="80"
+              fill="#c894ff">👤</text>
+      </svg>
+    `);
+}
+
+/* ============================================================
+   NAVEGAÇÃO
+============================================================ */
+
+window.navigate=function(page){
+
+  if(!currentUser||!userData)return;
+
+  currentPage=page;
+
+  document
+    .querySelectorAll(".bottom-nav button")
+    .forEach(b=>b.classList.remove("active"));
+
+  const nav=$("nav-"+page);
+
+  if(nav)nav.classList.add("active");
+
+  if(page==="home")renderHome();
+  else if(page==="profile")renderProfile();
+  else if(page==="ranking")renderRanking();
+  else if(page==="friends")renderFriends();
+  else if(page==="notifications")renderNotifications();
+  else if(page==="achievements")renderAchievements();
+  else if(page==="stats")renderStats();
+  else if(page==="settings")renderSettings();
+  else if(page==="game")renderMillionGame();
+  else if(page==="race")renderRace();
+  else if(page==="chat")renderChatList();
+};
+
+/* ============================================================
+   HOME
+============================================================ */
+
+function renderHome(){
+
+  $("main").innerHTML=`
+
+    <section class="screen">
+
+      <div class="container">
+
+        <div class="hero">
+
+          <h2>Olá, ${esc(userData.username)} 👋</h2>
+
+          <p>
+            Escolha um jogo e comece sua próxima vitória.
+          </p>
+
+          <div class="stats-row">
+
+            <div class="stat-card">
+              <small>⭐ Nível</small>
+              <strong>${userData.level}</strong>
+            </div>
+
+            <div class="stat-card">
+              <small>⚡ XP</small>
+              <strong>${Number(userData.xp).toLocaleString("pt-BR")}</strong>
+            </div>
+
+            <div class="stat-card">
+              <small>🪙 Moedas</small>
+              <strong>${Number(userData.coins).toLocaleString("pt-BR")}</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="games">
+
+          <article class="game-card">
+
+            <div>
+              <div class="game-icon">💰</div>
+
+              <h3>DESAFIO DO MILHÃO</h3>
+
+              <p>
+                Responda 15 perguntas e tente chegar a
+                R$1.000.000.
+              </p>
+            </div>
+
+            <button
+              class="play-btn"
+              onclick="startMillion()"
+            >
+              JOGAR AGORA
+            </button>
+
+          </article>
+
+          <article class="game-card">
+
+            <div>
+              <div class="game-icon">🏎️</div>
+
+              <h3>CORRIDA DO MILHÃO</h3>
+
+              <p>
+                Uma corrida arcade para testar sua velocidade.
+              </p>
+            </div>
+
+            <button
+              class="play-btn"
+              onclick="startRace()"
+            >
+              CORRER AGORA
+            </button>
+
+          </article>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-title">
+            <h3>🚀 Sua progressão</h3>
+            <span class="muted">
+              ${esc(userData.title)}
+            </span>
+          </div>
+
+          ${xpHTML()}
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-title">
+            <h3>⚡ Acesso rápido</h3>
+          </div>
+
+          <div class="grid grid-2">
+
+            <button
+              class="secondary"
+              onclick="navigate('achievements')"
+            >
+              🏅 Conquistas
+            </button>
+
+            <button
+              class="secondary"
+              onclick="navigate('stats')"
+            >
+              📊 Estatísticas
+            </button>
+
+            <button
+              class="secondary"
+              onclick="navigate('friends')"
+            >
+              👥 Amigos
+            </button>
+
+            <button
+              class="secondary"
+              onclick="navigate('settings')"
+            >
+              ⚙️ Configurações
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+  `;
+}
+
+function xpHTML(){
+
+  const level=userData.level;
+  const current=xpForLevel(level);
+  const next=xpToNext(level);
+
+  const percent=Math.max(
+    0,
+    Math.min(
+      100,
+      ((userData.xp-current)/(next-current))*100
+    )
+  );
+
+  return `
+
+    <div class="xp-wrap">
+
+      <div class="xp-info">
+
+        <span>Nível ${level}</span>
+
+        <span>
+          ${Number(userData.xp-current).toLocaleString("pt-BR")}
+          /
+          ${Number(next-current).toLocaleString("pt-BR")} XP
+        </span>
+
+      </div>
+
+      <div class="xp-bar">
+        <div
+          class="xp-fill"
+          style="width:${percent}%"
+        ></div>
+      </div>
+
+    </div>
+  `;
+}
+
+/* ============================================================
+   DESAFIO DO MILHÃO
+============================================================ */
+
+window.startMillion=function(){
+
+  currentPage="game";
+
+  currentGame="million";
+
+  gameState=createGameState();
+
+  renderMillionGame();
+
+  startQuestionTimer();
+
+  playGameMusic();
+
+};
+
+function createGameState(){
+
+  const all=[];
+
+  for(const category of Object.keys(QUESTION_BANK)){
+
+    QUESTION_BANK[category].forEach(item=>{
+
+      all.push({
+        category,
+        question:item[0],
+        correct:item[1],
+        wrong:item[2]
+      });
+
+    });
+
+  }
+
+  const selected=shuffle(all).slice(0,15);
+
+  return {
+    questions:selected,
+    index:0,
+    prize:0,
+    correct:0,
+    wrong:0,
+    answered:0,
+    streak:0,
+    bestStreak:0,
+    time:15,
+    locked:false,
+    helps:{
+      fifty:false,
+      skip:false,
+      hint:false
+    },
+    helpUsed:false,
+    startedAt:Date.now()
+  };
+}
+
+function renderMillionGame(){
+
+  if(!gameState){
+
+    $("main").innerHTML=`
+
+      <section class="screen">
+
+        <div class="container">
+
+          <div class="panel">
+
+            <div class="result">
+
+              <div class="result-trophy">💰</div>
+
+              <h2>Desafio do Milhão</h2>
+
+              <p class="muted" style="margin:10px 0 20px">
+                Você está prestes a enfrentar 15 perguntas.
+              </p>
+
+              <button
+                class="primary"
+                onclick="startMillion()"
+              >
+                COMEÇAR PARTIDA
+              </button>
+
+              <button
+                class="secondary"
+                style="margin-top:10px"
+                onclick="navigate('ranking')"
+              >
+                🏆 VER RANKING
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+    `;
+
+    return;
+  }
+
+  const q=gameState.questions[gameState.index];
+
+  if(!q)return;
+
+  const answers=shuffle([
+    {
+      text:q.correct,
+      correct:true
+    },
+    ...q.wrong.map(x=>({
+      text:x,
+      correct:false
+    }))
+  ]);
+
+  gameState.currentAnswers=answers;
+
+  $("main").innerHTML=`
+
+    <section class="screen">
+
+      <div class="container">
+
+        <div class="game-header">
+
+          <div class="game-top">
+
+            <div>
+
+              <div class="game-title">
+                💰 Desafio do Milhão
+              </div>
+
+              <div class="muted">
+                Pergunta ${gameState.index+1} de 15
+              </div>
+
+            </div>
+
+            <div class="money">
+              ${money(PRIZES[gameState.index])}
+            </div>
+
+          </div>
+
+          <div class="progress">
+            <div
+              class="progress-bar"
+              style="width:${((gameState.index)/15)*100}%"
+            ></div>
+          </div>
+
+        </div>
+
+        <div class="game-nav">
+
+          <button class="active">
+            🎮 Jogar
+          </button>
+
+          <button onclick="navigate('ranking')">
+            🏆 Ranking
+          </button>
+
+          <button onclick="navigate('achievements')">
+            🏅 Conquistas
+          </button>
+
+          <button onclick="navigate('stats')">
+            📊 Estatísticas
+          </button>
+
+        </div>
+
+        <div class="question-card">
+
+          <div class="question-meta">
+
+            <span>
+              ${esc(q.category)}
+            </span>
+
+            <span class="difficulty">
+              ${DIFFICULTIES[gameState.index]}
+            </span>
+
+          </div>
+
+          <div class="timer" id="timer">
+            ${gameState.time}
+          </div>
+
+          <div class="question">
+            ${esc(q.question)}
+          </div>
+
+          <div class="answers">
+
+            ${answers.map((a,i)=>`
+
+              <button
+                class="answer"
+                data-index="${i}"
+                onclick="answerQuestion(${i})"
+              >
+                <strong>${String.fromCharCode(65+i)})</strong>
+                ${esc(a.text)}
+              </button>
+
+            `).join("")}
+
+          </div>
+
+          <div class="helps">
+
+            <button
+              class="help"
+              id="help50"
+              onclick="useFifty()"
+            >
+              50/50
+            </button>
+
+            <button
+              class="help"
+              id="helpSkip"
+              onclick="useSkip()"
+            >
+              ⏭️ Pular
+            </button>
+
+            <button
+              class="help"
+              id="helpHint"
+              onclick="useHint()"
+            >
+              💡 Dica
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-title">
+            <h3>🏆 Progresso</h3>
+            <span>
+              ${gameState.correct} acertos
+            </span>
+          </div>
+
+          <div class="grid grid-3">
+
+            <div class="stat-card">
+              <small>Prêmio atual</small>
+              <strong>${money(gameState.prize)}</strong>
+            </div>
+
+            <div class="stat-card">
+              <small>Sequência</small>
+              <strong>${gameState.streak}</strong>
+            </div>
+
+            <div class="stat-card">
+              <small>Recorde</small>
+              <strong>${money(userData.record)}</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+  `;
+
+  updateHelpButtons();
+
+  clearInterval(timerInterval);
+
+  startQuestionTimer();
+}
+
+function updateHelpButtons(){
+
+  if(!gameState)return;
+
+  $("help50").disabled=gameState.helps.fifty;
+  $("helpSkip").disabled=gameState.helps.skip;
+  $("helpHint").disabled=gameState.helps.hint;
+}
+
+function startQuestionTimer(){
+
+  clearInterval(timerInterval);
+
+  if(!gameState)return;
+
+  gameState.time=15;
+
+  const timer=$("timer");
+
+  if(timer)timer.textContent="15";
+
+  timerInterval=setInterval(()=>{
+
+    if(!gameState)return;
+
+    gameState.time--;
+
+    const el=$("timer");
+
+    if(el)el.textContent=gameState.time;
+
+    if(gameState.time<=5){
+      playTick();
+    }
+
+    if(gameState.time<=0){
+
+      clearInterval(timerInterval);
+
+      timeOut();
+
+    }
+
+  },1000);
+}
+
+function answerQuestion(index){
+
+  if(!gameState || gameState.locked)return;
+
+  gameState.locked=true;
+
+  clearInterval(timerInterval);
+
+  const selected=gameState.currentAnswers[index];
+
+  const buttons=[
+    ...document.querySelectorAll(".answer")
+  ];
+
+  buttons.forEach(b=>b.disabled=true);
+
+  if(selected.correct){
+
+    buttons[index].classList.add("correct");
+
+    gameState.correct++;
+    gameState.answered++;
+    gameState.streak++;
+
+    gameState.bestStreak=Math.max(
+      gameState.bestStreak,
+      gameState.streak
+    );
+
+    gameState.prize=PRIZES[gameState.index];
+
+    playCorrect();
+
+  }else{
+
+    buttons[index].classList.add("wrong");
+
+    const correctIndex=
+      gameState.currentAnswers.findIndex(a=>a.correct);
+
+    if(buttons[correctIndex])
+      buttons[correctIndex].classList.add("correct");
+
+    gameState.wrong++;
+    gameState.answered++;
+    gameState.streak=0;
+
+    playWrong();
+  }
+
+  setTimeout(()=>{
+
+    if(!gameState)return;
+
+    if(!selected.correct){
+
+      finishMillion(false);
+
+      return;
+    }
+
+    if(gameState.index>=14){
+
+      finishMillion(true);
+
+      return;
+    }
+
+    gameState.index++;
+    gameState.locked=false;
+
+    renderMillionGame();
+
+  },1100);
+}
+
+function timeOut(){
+
+  if(!gameState || gameState.locked)return;
+
+  gameState.locked=true;
+  gameState.wrong++;
+  gameState.answered++;
+  gameState.streak=0;
+
+  const buttons=[
+    ...document.querySelectorAll(".answer")
+  ];
+
+  buttons.forEach(b=>b.disabled=true);
+
+  toast("⏰ Tempo esgotado!");
+
+  playWrong();
+
+  setTimeout(()=>{
+
+    finishMillion(false);
+
+  },1000);
+}
+
+window.answerQuestion=answerQuestion;
+
+window.useFifty=function(){
+
+  if(!gameState || gameState.locked || gameState.helps.fifty)return;
+
+  gameState.helps.fifty=true;
+  gameState.helpUsed=true;
+
+  const wrongIndexes=gameState.currentAnswers
+    .map((a,i)=>!a.correct?i:-1)
+    .filter(i=>i>=0);
+
+  shuffle(wrongIndexes)
+    .slice(0,2)
+    .forEach(i=>{
+
+      const btn=document.querySelector(
+        `.answer[data-index="${i}"]`
+      );
+
+      if(btn){
+        btn.disabled=true;
+        btn.style.visibility="hidden";
+      }
+
+    });
+
+  updateHelpButtons();
+
+  playClick();
+};
+
+window.useSkip=function(){
+
+  if(!gameState || gameState.locked || gameState.helps.skip)return;
+
+  gameState.helps.skip=true;
+  gameState.helpUsed=true;
+
+  clearInterval(timerInterval);
+
+  toast("⏭️ Pergunta pulada.");
+
+  playClick();
+
+  setTimeout(()=>{
+
+    if(gameState.index>=14){
+
+      finishMillion(false);
+
+      return;
+    }
+
+    gameState.index++;
+    gameState.locked=false;
+
+    renderMillionGame();
+
+  },500);
+};
+
+window.useHint=function(){
+
+  if(!gameState || gameState.locked || gameState.helps.hint)return;
+
+  gameState.helps.hint=true;
+  gameState.helpUsed=true;
+
+  const q=gameState.questions[gameState.index];
+
+  let hint="Pense com calma e elimine as alternativas menos prováveis.";
+
+  if(q.category==="Matemática")
+    hint="Faça a conta passo a passo.";
+
+  if(q.category==="História")
+    hint="Pense no período histórico relacionado ao acontecimento.";
+
+  if(q.category==="Geografia")
+    hint="Lembre-se dos países, capitais e continentes.";
+
+  if(q.category==="Ciência")
+    hint="Pense no conceito científico envolvido.";
+
+  if(q.category==="Tecnologia")
+    hint="Considere os termos e tecnologias mais conhecidos.";
+
+  toast("💡 "+hint);
+
+  updateHelpButtons();
+
+  playClick();
+};
+
+async function finishMillion(won){
+
+  clearInterval(timerInterval);
+
+  if(!gameState)return;
+
+  const prize=gameState.prize;
+
+  const xpGain=
+    gameState.correct*20+
+    (won?300:0)+
+    Math.floor(prize/10000);
+
+  const coinsGain=
+    gameState.correct*5+
+    (won?100:10);
+
+  userData.xp+=xpGain;
+  userData.coins+=coinsGain;
+
+  userData.stats.games++;
+  userData.stats.correct+=gameState.correct;
+  userData.stats.wrong+=gameState.wrong;
+  userData.stats.answered+=gameState.answered;
+
+  userData.stats.bestStreak=Math.max(
+    userData.stats.bestStreak,
+    gameState.bestStreak
+  );
+
+  if(won)
+    userData.stats.victories++;
+  else
+    userData.stats.defeats++;
+
+  if(!gameState.helpUsed && won)
+    userData.stats.noHelpWins++;
+
+  userData.record=Math.max(
+    userData.record,
+    prize
+  );
+
+  userData.highestPrize=Math.max(
+    userData.highestPrize,
+    prize
+  );
+
+  const previousAchievements=[
+    ...(userData.achievements||[])
+  ];
+
+  const unlocked=[];
+
+  for(const a of ACHIEVEMENTS){
+
+    if(
+      !previousAchievements.includes(a.id) &&
+      a.check({
+        ...userData.stats,
+        record:userData.record
+      })
+    ){
+
+      userData.achievements.push(a.id);
+      unlocked.push(a);
+
+    }
+
+  }
+
+  await saveUser();
+
+  await publishRanking();
+
+  gameState=null;
+
+  if(won)playVictory();
+
+  $("main").innerHTML=`
+
+    <section class="screen">
+
+      <div class="container">
+
+        <div class="panel">
+
+          <div class="result">
+
+            <div class="result-trophy">
+              ${won?"🏆":"💥"}
+            </div>
+
+            <h2>
+              ${won?"PARABÉNS!":"FIM DA PARTIDA"}
+            </h2>
+
+            <p class="muted">
+              ${esc(userData.username)}
+            </p>
+
+            <div class="prize">
+              ${money(prize)}
+            </div>
+
+            <div class="result-stats">
+
+              <div class="result-stat">
+                <small>Acertos</small>
+                <strong>${userData.stats.correct}</strong>
+              </div>
+
+              <div class="result-stat">
+                <small>Acertos nesta partida</small>
+                <strong>${gameState?.correct??"—"}</strong>
+              </div>
+
+              <div class="result-stat">
+                <small>XP ganho</small>
+                <strong>+${xpGain}</strong>
+              </div>
+
+              <div class="result-stat">
+                <small>Moedas ganhas</small>
+                <strong>+${coinsGain}</strong>
+              </div>
+
+            </div>
+
+            ${
+              unlocked.length
+              ?`
+                <div class="panel" style="text-align:left">
+                  <div class="panel-title">
+                    <h3>🎉 Conquistas desbloqueadas</h3>
+                  </div>
+
+                  ${unlocked.map(a=>`
+                    <div class="achievement">
+                      <div class="achievement-icon">
+                        ${a.icon}
+                      </div>
+                      <div>
+                        <strong>${esc(a.name)}</strong>
+                        <small>${esc(a.desc)}</small>
+                      </div>
+                    </div>
+                  `).join("")}
+                </div>
+              `
+              :""
+            }
+
+            <button
+              class="primary"
+              onclick="startMillion()"
+            >
+              🔄 JOGAR NOVAMENTE
+            </button>
+
+            <button
+              class="secondary"
+              style="margin-top:10px"
+              onclick="navigate('home')"
+            >
+              VOLTAR
+            </button>
+
+            <button
+              class="secondary"
+              style="margin-top:10px"
+              onclick="shareResult(${prize},${gameState?.correct||0})"
+            >
+              📤 COMPARTILHAR RESULTADO
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+  `;
+
+  // O estado foi limpo acima. Os valores importantes já foram
+  // calculados antes da tela final.
+
+}
+
+window.shareResult=async function(prize,correct){
+
+  const text=
+    `Eu joguei o Desafio do Milhão e consegui ${money(prize)}! `+
+    `Acertos: ${correct}.`;
+
+  if(navigator.share){
+
+    try{
+
+      await navigator.share({
+        title:"Desafio do Milhão",
+        text
+      });
+
+    }catch(e){}
+
+  }else{
+
+    try{
+
+      await navigator.clipboard.writeText(text);
+
+      toast("Resultado copiado!");
+
+    }catch(e){
+
+      toast(text);
+
+    }
+
+  }
+};
+
+/* ============================================================
+   RANKING PÚBLICO
+============================================================ */
+
+async function publishRanking(){
+
+  if(!currentUser||!userData)return;
+
+  try{
+
+    await setDoc(
+      doc(db,"Partidas","ranking_"+currentUser.uid),
+      {
+        uid:currentUser.uid,
+        username:userData.username,
+        photo:userData.photo||"",
+        level:userData.level,
+        xp:userData.xp,
+        record:userData.record,
+        highestPrize:userData.highestPrize,
+        updatedAt:serverTimestamp()
+      },
+      {merge:true}
+    );
+
+  }catch(e){
+
+    console.warn("Ranking:",e);
+
+  }
+}
+
+async function getRanking(){
+
+  try{
+
+    const snap=await getDocs(
+      query(
+        collection(db,"Partidas"),
+        orderBy("record","desc"),
+        limit(50)
+      )
+    );
+
+    return snap.docs
+      .filter(d=>d.id.startsWith("ranking_"))
+      .map(d=>d.data())
+      .sort((a,b)=>
+        Number(b.record||0)-Number(a.record||0)
+      );
+
+  }catch(e){
+
+    console.warn(e);
+
+    return [];
+  }
+}
+
+async function renderRanking(){
+
+  $("main").innerHTML=`
+
+    <section class="screen">
+
+      <div class="container">
+
+        <div class="hero">
+
+          <h2>🏆 Ranking</h2>
+
+          <p>
+            Melhores jogadores do Desafio do Milhão
+          </p>
+
+        </div>
+
+        <div class="game-nav">
+
+          <button class="active">
+            💰 Desafio do Milhão
+          </button>
+
+          <button onclick="navigate('home')">
+            🎮 Jogos
+          </button>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-title">
+            <h3>Top jogadores</h3>
+            <span class="muted">Recorde</span>
+          </div>
+
+          <div id="rankingList">
+            <p class="muted">Carregando ranking...</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+  `;
+
+  const list=await getRanking();
+
+  if(!list.length){
+
+    $("rankingList").innerHTML=`
+      <p class="muted">
+        Ainda não há jogadores suficientes no ranking.
+      </p>
+    `;
+
+    return;
+  }
+
+  $("rankingList").innerHTML=`
+
+    <div class="list">
+
+      ${list.map((p,i)=>`
+
+        <div class="rank-item">
+
+          <div class="rank-number">
+            ${i+1}
+          </div>
+
+          <img
+            class="avatar"
+            src="${esc(p.photo||placeholderAvatar())}"
+          >
+
+          <div class="list-main">
+
+            <strong>
+              ${esc(p.username||"Jogador")}
+            </strong>
+
+            <small>
+              Nível ${p.level||1}
+              • ${Number(p.xp||0).toLocaleString("pt-BR")} XP
+            </small>
+
+          </div>
+
+          <div class="rank-score">
+
+            <strong>
+              ${money(p.record)}
+            </strong>
+
+            <small>
+              maior prêmio
+            </small>
+
+          </div>
+
+        </div>
+
+      `).join("")}
+
+    </div>
+  `;
+}
+
+/* ============================================================
+   PERFIL
+============================================================ */
+
+function renderProfile(){
+
+  $("main").innerHTML=`
+
+    <section class="screen">
+
+      <div class="container">
+
+        <div class="hero">
+
+          <h2>👤 Meu Perfil</h2>
+
+          <p>
+            Sua evolução na plataforma.
+          </p>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="profile-head">
+
+            <img
+              class="profile-avatar"
+              id="profilePhoto"
+              src="${esc(userData.photo||placeholderAvatar())}"
+            >
+
+            <div>
+
+              <div class="profile-name">
+                ${esc(userData.username)}
+              </div>
+
+              <span class="level-badge">
+                Nível ${userData.level} • ${esc(userData.title)}
+              </span>
+
+              <div class="muted" style="margin-top:6px">
+                🪙 ${Number(userData.coins).toLocaleString("pt-BR")} moedas
+              </div>
+
+            </div>
+
+          </div>
+
+          ${xpHTML()}
+
+          <button
+            class="secondary"
+            style="margin-top:15px"
+            onclick="changePhoto()"
+          >
+            📷 Alterar foto
+          </button>
+
+          <input
+            type="file"
+            id="photoInput"
+            accept="image/*"
+            class="hidden"
+          >
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-title">
+            <h3>🏆 Recordes</h3>
+          </div>
+
+          <div class="grid grid-2">
+
+            <div class="stat-card">
+              <small>Recorde</small>
+              <strong>${money(userData.record)}</strong>
+            </div>
+
+            <div class="stat-card">
+              <small>Maior prêmio</small>
+              <strong>${money(userData.highestPrize)}</strong>
+            </div>
+
+            <div class="stat-card">
+              <small>Partidas</small>
+              <strong>${userData.stats.games}</strong>
+            </div>
+
+            <div class="stat-card">
+              <small>Vitórias</small>
+              <strong>${userData.stats.victories}</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-title">
+            <h3>📊 Estatísticas</h3>
+          </div>
+
+          <div class="grid grid-2">
+
+            <div class="stat-card">
+              <small>Perguntas certas</small>
+              <strong>${userData.stats.correct}</strong>
+            </div>
+
+            <div class="stat-card">
+              <small>Perguntas erradas</small>
+              <strong>${userData.stats.wrong}</strong>
+            </div>
+
+            <div class="stat-card">
+              <small>Melhor sequência</small>
+              <strong>${userData.stats.bestStreak}</strong>
+            </div>
+
+            <div class="stat-card">
+              <small>Derrotas</small>
+              <strong>${userData.stats.defeats}</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="grid grid-2" style="margin-top:15px">
+
+          <button
+            class="secondary"
+            onclick="navigate('achievements')"
+          >
+            🏅 Conquistas
+          </button>
+
+          <button
+            class="secondary"
+            onclick="navigate('stats')"
+          >
+            📊 Estatísticas completas
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+  `;
+
+  $("photoInput").addEventListener(
+    "change",
+    handlePhoto
+  );
+}
+
+window.changePhoto=function(){
+  $("photoInput").click();
+};
+
+async function handlePhoto(e){
+
+  const file=e.target.files[0];
+
+  if(!file)return;
+
+  if(!file.type.startsWith("image/")){
+
+    toast("Escolha uma imagem.");
+
+    return;
+  }
+
+  const data=await compressImage(file);
+
+  userData.photo=data;
+
+  await saveUser();
+
+  renderProfile();
+
+  toast("📷 Foto atualizada!");
+
+}
+
+function compressImage(file){
+
+  return new Promise((resolve,reject)=>{
+
+    const reader=new FileReader();
+
+    reader.onload=()=>{
+
+      const img=new Image();
+
+      img.onload=()=>{
+
+        const size=256;
+
+        const canvas=document.createElement("canvas");
+
+        canvas.width=size;
+        canvas.height=size;
+
+        const ctx=canvas.getContext("2d");
+
+        const scale=Math.max(
+          size/img.width,
+          size/img.height
+        );
+
+        const w=img.width*scale;
+        const h=img.height*scale;
+
+        const x=(size-w)/2;
+        const y=(size-h)/2;
+
+        ctx.drawImage(img,x,y,w,h);
+
+        resolve(
+          canvas.toDataURL("image/jpeg",.78)
+        );
+
+      };
+
+      img.onerror=reject;
+      img.src=reader.result;
+
+    };
+
+    reader.onerror=reject;
+
+    reader.readAsDataURL(file);
+
+  });
+}
+
+/* ============================================================
+   CONQUISTAS
+============================================================ */
+
+function renderAchievements(){
+
+  $("main").innerHTML=`
+
+    <section class="screen">
+
+      <div class="container">
+
+        <div class="hero">
+
+          <h2>🏅 Conquistas</h2>
+
+          <p>
+            ${userData.achievements.length}
+            / ${ACHIEVEMENTS.length}
+            desbloqueadas
+          </p>
+
+        </div>
+
+        <div class="list">
+
+          ${ACHIEVEMENTS.map(a=>{
+
+            const unlocked=
+              userData.achievements.includes(a.id);
+
+            return `
+
+              <div class="achievement ${
+                unlocked?"":"locked"
+              }">
+
+                <div class="achievement-icon">
+                  ${unlocked?a.icon:"🔒"}
+                </div>
+
+                <div>
+
+                  <strong>
+                    ${esc(a.name)}
+                  </strong>
+
+                  <small>
+                    ${esc(a.desc)}
+                  </small>
+
+                </div>
+
+              </div>
+
+            `;
+
+          }).join("")}
+
+        </div>
+
+      </div>
+
+    </section>
+  `;
+}
+
+/* ============================================================
+   ESTATÍSTICAS
+============================================================ */
+
+function renderStats(){
+
+  const s=userData.stats;
+
+  const accuracy=s.answered
+    ?Math.round((s.correct/s.answered)*100)
+    :0;
+
+  $("main").innerHTML=`
+
+    <section class="screen">
+
+      <div class="container">
+
+        <div class="hero">
+
+          <h2>📊 Estatísticas</h2>
+
+          <p>
+            Seu desempenho completo.
+          </p>
+
+        </div>
+
+        <div class="grid grid-2">
+
+          <div class="stat-card">
+            <small>Partidas</small>
+            <strong>${s.games}</strong>
+          </div>
+
+          <div class="stat-card">
+            <small>Vitórias</small>
+            <strong>${s.victories}</strong>
+          </div>
+
+          <div class="stat-card">
+            <small>Derrotas</small>
+            <strong>${s.defeats}</strong>
+          </div>
+
+          <div class="stat-card">
+            <small>Precisão</small>
+            <strong>${accuracy}%</strong>
+          </div>
+
+          <div class="stat-card">
+            <small>Acertos</small>
+            <strong>${s.correct}</strong>
+          </div>
+
+          <div class="stat-card">
+            <small>Erros</small>
+            <strong>${s.wrong}</strong>
+          </div>
+
+          <div class="stat-card">
+            <small>Melhor sequência</small>
+            <strong>${s.bestStreak}</strong>
+          </div>
+
+          <div class="stat-card">
+            <small>Sem ajuda</small>
+            <strong>${s.noHelpWins}</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+  `;
+}
+
+/* ============================================================
+   AMIGOS
+============================================================ */
+
+async function renderFriends(){
+
+  $("main").innerHTML=`
+
+    <section class="screen">
+
+      <div class="container">
+
+        <div class="hero">
+
+          <h2>👥 Amigos</h2>
+
+          <p>
+            Encontre jogadores e monte sua rede.
+          </p>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-title">
+            <h3>🔎 Procurar jogador</h3>
+          </div>
+
+          <div style="display:flex;gap:8px">
+
+            <input
+              class="input"
+              id="friendSearch"
+              placeholder="Nome de usuário"
+            >
+
+            <button
+              class="primary"
+              style="width:auto;white-space:nowrap"
+              onclick="searchFriends()"
+            >
+              Buscar
+            </button>
+
+          </div>
+
+          <div
+            id="friendSearchResults"
+            style="margin-top:12px"
+          ></div>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-title">
+            <h3>👤 Meus amigos</h3>
+          </div>
+
+          <div id="friendsList">
+            <p class="muted">Carregando...</p>
+          </div>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-title">
+            <h3>📨 Solicitações recebidas</h3>
+          </div>
+
+          <div id="friendRequests">
+            <p class="muted">Carregando...</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+  `;
+
+  await loadFriends();
+}
+
+async function searchFriends(){
+
+  const term=$("friendSearch").value.trim().toLowerCase();
+
+  if(term.length<2){
+
+    toast("Digite pelo menos 2 caracteres.");
+
+    return;
+  }
+
+  const box=$("friendSearchResults");
+
+  box.innerHTML=
+    `<p class="muted">Buscando...</p>`;
+
+  try{
+
+    const snap=await getDocs(
+      query(
+        collection(db,"Usuarios"),
+        orderBy("username"),
+        limit(50)
+      )
+    );
+
+    const results=snap.docs
+      .map(d=>({id:d.id,...d.data()}))
+      .filter(u=>
+        u.uid!==currentUser.uid &&
+        String(u.username||"")
+          .toLowerCase()
+          .includes(term)
+      )
+      .slice(0,10);
+
+    if(!results.length){
+
+      box.innerHTML=
+        `<p class="muted">Nenhum jogador encontrado.</p>`;
+
+      return;
+    }
+
+    box.innerHTML=`
+
+      <div class="list">
+
+        ${results.map(u=>`
+
+          <div class="list-item">
+
+            <img
+              class="avatar"
+              src="${esc(u.photo||placeholderAvatar())}"
+            >
+
+            <div class="list-main">
+
+              <strong>
+                ${esc(u.username)}
+              </strong>
+
+              <small>
+                Nível ${u.level||1}
+              </small>
+
+            </div>
+
+            <button
+              class="secondary"
+              style="width:auto;padding:9px 12px"
+              onclick="sendFriendRequest('${esc(u.uid)}','${esc(u.username)}')"
+            >
+              Adicionar
+            </button>
+
+          </div>
+
+        `).join("")}
+
+      </div>
+    `;
+
+  }catch(e){
+
+    box.innerHTML=
+      `<p class="muted">
+        Não foi possível pesquisar agora.
+      </p>`;
+
+  }
+}
+
+window.searchFriends=searchFriends;
+
+window.sendFriendRequest=async function(uidTarget,name){
+
+  try{
+
+    const targetRef=doc(db,"Usuarios",uidTarget);
+    const snap=await getDoc(targetRef);
+
+    if(!snap.exists()){
+
+      toast("Usuário não encontrado.");
+
+      return;
+    }
+
+    await updateDoc(
+      targetRef,
+      {
+        friendRequestsReceived:arrayUnion(
+          currentUser.uid
+        )
+      }
+    );
+
+    await updateDoc(
+      doc(db,"Usuarios",currentUser.uid),
+      {
+        friendRequestsSent:arrayUnion(uidTarget)
+      }
+    );
+
+    await addDoc(
+      collection(db,"Notificacoes"),
+      {
+        destinatario:uidTarget,
+        remetente:currentUser.uid,
+        texto:`${userData.username} enviou uma solicitação de amizade.`,
+        tipo:"amizade",
+        lida:false,
+        data:serverTimestamp()
+      }
+    );
+
+    toast(`Solicitação enviada para ${name}.`);
+
+  }catch(e){
+
+    console.error(e);
+
+    toast("Não foi possível enviar a solicitação.");
+
+  }
+};
+
+async function loadFriends(){
+
+  const friendIds=userData.friends||[];
+  const requests=userData.friendRequestsReceived||[];
+
+  const friendsBox=$("friendsList");
+  const reqBox=$("friendRequests");
+
+  if(!friendIds.length){
+
+    friendsBox.innerHTML=
+      `<p class="muted">Você ainda não possui amigos.</p>`;
+
+  }else{
+
+    const users=[];
+
+    for(const id of friendIds){
+
+      const snap=await getDoc(
+        doc(db,"Usuarios",id)
+      );
+
+      if(snap.exists())
+        users.push(snap.data());
+
+    }
+
+    friendsBox.innerHTML=`
+
+      <div class="list">
+
+        ${users.map(u=>`
+
+          <div class="list-item">
+
+            <img
+              class="avatar"
+              src="${esc(u.photo||placeholderAvatar())}"
+            >
+
+            <div class="list-main">
+
+              <strong>${esc(u.username)}</strong>
+
+              <small>
+                Nível ${u.level||1}
+                • ${u.online?"🟢 Online":"⚫ Offline"}
+              </small>
+
+            </div>
+
+            <button
+              class="secondary"
+              style="width:auto;padding:9px"
+              onclick="openChat('${esc(u.uid)}')"
+            >
+              💬
+            </button>
+
+          </div>
+
+        `).join("")}
+
+      </div>
+    `;
+  }
+
+  if(!requests.length){
+
+    reqBox.innerHTML=
+      `<p class="muted">
+        Nenhuma solicitação pendente.
+      </p>`;
+
+  }else{
+
+    const users=[];
+
+    for(const id of requests){
+
+      const snap=await getDoc(
+        doc(db,"Usuarios",id)
+      );
+
+      if(snap.exists())
+        users.push(snap.data());
+
+    }
+
+    reqBox.innerHTML=`
+
+      <div class="list">
+
+        ${users.map(u=>`
+
+          <div class="list-item">
+
+            <img
+              class="avatar"
+              src="${esc(u.photo||placeholderAvatar())}"
+            >
+
+            <div class="list-main">
+
+              <strong>${esc(u.username)}</strong>
+
+              <small>
+                Nível ${u.level||1}
+              </small>
+
+            </div>
+
+            <button
+              class="secondary"
+              style="width:auto;padding:8px"
+              onclick="acceptFriend('${esc(u.uid)}')"
+            >
+              ✓
+            </button>
+
+            <button
+              class="secondary"
+              style="width:auto;padding:8px"
+              onclick="rejectFriend('${esc(u.uid)}')"
+            >
+              ✕
+            </button>
+
+          </div>
+
+        `).join("")}
+
+      </div>
+    `;
+  }
+}
+
+window.acceptFriend=async function(uidTarget){
+
+  try{
+
+    await updateDoc(
+      doc(db,"Usuarios",currentUser.uid),
+      {
+        friends:arrayUnion(uidTarget),
+        friendRequestsReceived:arrayRemove(uidTarget)
+      }
+    );
+
+    await updateDoc(
+      doc(db,"Usuarios",uidTarget),
+      {
+        friends:arrayUnion(currentUser.uid),
+        friendRequestsSent:arrayRemove(currentUser.uid)
+      }
+    );
+
+    await addDoc(
+      collection(db,"Notificacoes"),
+      {
+        destinatario:uidTarget,
+        remetente:currentUser.uid,
+        texto:`${userData.username} aceitou sua solicitação de amizade.`,
+        tipo:"amizade_aceita",
+        lida:false,
+        data:serverTimestamp()
+      }
+    );
+
+    await loadUser();
+
+    toast("Amizade aceita!");
+
+    renderFriends();
+
+  }catch(e){
+
+    toast("Não foi possível aceitar.");
+
+  }
+};
+
+window.rejectFriend=async function(uidTarget){
+
+  try{
+
+    await updateDoc(
+      doc(db,"Usuarios",currentUser.uid),
+      {
+        friendRequestsReceived:arrayRemove(uidTarget)
+      }
+    );
+
+    await updateDoc(
+      doc(db,"Usuarios",uidTarget),
+      {
+        friendRequestsSent:arrayRemove(currentUser.uid)
+      }
+    );
+
+    await loadUser();
+
+    renderFriends();
+
+  }catch(e){
+
+    toast("Não foi possível recusar.");
+
+  }
+};
+
+/* ============================================================
+   CHAT
+============================================================ */
+
+function makeChatId(a,b){
+
+  return [a,b].sort().join("_");
+
+}
+
+window.openChat=async function(otherUid){
+
+  currentPage="chat";
+
+  await renderChat(otherUid);
+
+};
+
+function renderChatList(){
+
+  $("main").innerHTML=`
+
+    <section class="screen">
+
+      <div class="container">
+
+        <div class="hero">
+
+          <h2>💬 Chat</h2>
+
+          <p>
+            Converse com seus amigos.
+          </p>
+
+        </div>
+
+        <div class="panel">
+
+          <p class="muted">
+            Selecione um amigo na lista para abrir uma conversa.
+          </p>
+
+          <button
+            class="secondary"
+            style="margin-top:12px"
+            onclick="navigate('friends')"
+          >
+            👥 Ver amigos
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+  `;
+}
+
+async function renderChat(otherUid){
+
+  const otherSnap=await getDoc(
+    doc(db,"Usuarios",otherUid)
+  );
+
+  if(!otherSnap.exists()){
+
+    toast("Usuário não encontrado.");
+
+    navigate("friends");
+
+    return;
+  }
+
+  const other=otherSnap.data();
+
+  $("main").innerHTML=`
+
+    <section class="screen">
+
+      <div class="container">
+
+        <div class="hero">
+
+          <button
+            class="text-button"
+            onclick="navigate('friends')"
+          >
+            ← Voltar
+          </button>
+
+          <h2>
+            💬 ${esc(other.username)}
+          </h2>
+
+          <p>
+            ${other.online?"🟢 Online":"⚫ Offline"}
+          </p>
+
+        </div>
+
+        <div class="panel">
+
+          <div
+            id="messages"
+            style="
+              min-height:300px;
+              max-height:50vh;
+              overflow:auto;
+              display:flex;
+              flex-direction:column;
+              gap:8px;
+            "
+          >
+            Carregando...
+          </div>
+
+          <form
+            id="chatForm"
+            style="display:flex;gap:8px;margin-top:12px"
+          >
+
+            <input
+              class="input"
+              id="chatText"
+              placeholder="Digite uma mensagem..."
+              maxlength="500"
+              required
+            >
+
+            <button
+              class="primary"
+              style="width:auto;padding:0 18px"
+            >
+              Enviar
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+  `;
+
+  const chatId=makeChatId(
+    currentUser.uid,
+    otherUid
+  );
+
+  const chatRef=doc(
+    db,
+    "Chats",
+    chatId
+  );
+
+  const chatSnap=await getDoc(chatRef);
+
+  if(!chatSnap.exists()){
+
+    await setDoc(chatRef,{
+      participantes:[
+        currentUser.uid,
+        otherUid
+      ],
+      ultimaMensagem:"",
+      atualizadoEm:serverTimestamp()
+    });
+
+  }
+
+  const messagesQuery=query(
+    collection(
+      db,
+      "Chats",
+      chatId,
+      "Mensagens"
+    ),
+    orderBy("data","asc")
+  );
+
+  onSnapshot(messagesQuery,snap=>{
+
+    const box=$("messages");
+
+    if(!box)return;
+
+    box.innerHTML=snap.docs.map(d=>{
+
+      const m=d.data();
+
+      const mine=
+        m.remetente===currentUser.uid;
+
+      return `
+
+        <div style="
+          align-self:${mine?"flex-end":"flex-start"};
+          max-width:80%;
+          padding:10px 13px;
+          border-radius:14px;
+          background:${mine?"#6325b5":"#24152f"};
+        ">
+
+          ${esc(m.texto)}
+
+        </div>
+      `;
+
+    }).join("");
+
+    box.scrollTop=box.scrollHeight;
+
+  });
+
+  $("chatForm").addEventListener("submit",async e=>{
+
+    e.preventDefault();
+
+    const input=$("chatText");
+    const text=input.value.trim();
+
+    if(!text)return;
+
+    await addDoc(
+      collection(
+        db,
+        "Chats",
+        chatId,
+        "Mensagens"
+      ),
+      {
+        remetente:currentUser.uid,
+        destinatario:otherUid,
+        texto:text,
+        data:serverTimestamp()
+      }
+    );
+
+    await updateDoc(
+      chatRef,
+      {
+        ultimaMensagem:text,
+        atualizadoEm:serverTimestamp()
+      }
+    );
+
+    await addDoc(
+      collection(db,"Notificacoes"),
+      {
+        destinatario:otherUid,
+        remetente:currentUser.uid,
+        texto:`Você recebeu uma mensagem de ${userData.username}.`,
+        tipo:"mensagem",
+        lida:false,
+        data:serverTimestamp()
+      }
+    );
+
+    input.value="";
+
+  });
+}
+
+/* ============================================================
+   NOTIFICAÇÕES
+============================================================ */
+
+async function renderNotifications(){
+
+  $("main").innerHTML=`
+
+    <section class="screen">
+
+      <div class="container">
+
+        <div class="hero">
+
+          <h2>🔔 Notificações</h2>
+
+          <p>
+            Avisos da sua conta.
+          </p>
+
+        </div>
+
+        <div class="panel">
+
+          <div id="notificationList">
+            Carregando...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+  `;
+
+  try{
+
+    const snap=await getDocs(
+      query(
+        collection(db,"Notificacoes"),
+        where("destinatario","==",currentUser.uid),
+        limit(50)
+      )
+    );
+
+    const data=snap.docs
+      .map(d=>({id:d.id,...d.data()}))
+      .sort((a,b)=>{
+        const ta=a.data?.seconds||0;
+        const tb=b.data?.seconds||0;
+        return tb-ta;
+      });
+
+    if(!data.length){
+
+      $("notificationList").innerHTML=
+        `<p class="muted">
+          Você não possui notificações.
+        </p>`;
+
+      return;
+    }
+
+    $("notificationList").innerHTML=`
+
+      <div class="list">
+
+        ${data.map(n=>`
+
+          <div class="list-item">
+
+            <div class="achievement-icon">
+              ${
+                n.tipo==="amizade"
+                ?"👥"
+                :n.tipo==="mensagem"
+                ?"💬"
+                :"🔔"
+              }
+            </div>
+
+            <div class="list-main">
+
+              <strong>
+                ${esc(n.texto||"Nova notificação")}
+              </strong>
+
+              <small>
+                ${n.lida?"Lida":"Nova"}
+              </small>
+
+            </div>
+
+          </div>
+
+        `).join("")}
+
+      </div>
+    `;
+
+    for(const n of data){
+
+      if(!n.lida){
+
+        await updateDoc(
+          doc(db,"Notificacoes",n.id),
+          {lida:true}
+        );
+
+      }
+
+    }
+
+  }catch(e){
+
+    $("notificationList").innerHTML=
+      `<p class="muted">
+        Não foi possível carregar as notificações.
+      </p>`;
+
+  }
+}
+
+/* ============================================================
+   CONFIGURAÇÕES
+============================================================ */
+
+function renderSettings(){
+
+  $("main").innerHTML=`
+
+    <section class="screen">
+
+      <div class="container">
+
+        <div class="hero">
+
+          <h2>⚙️ Configurações</h2>
+
+          <p>
+            Personalize sua experiência.
+          </p>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-title">
+            <h3>🔊 Som</h3>
+          </div>
+
+          <button
+            class="secondary"
+            onclick="toggleSound()"
+          >
+            ${userData.settings.sound?"🔊 Som ativado":"🔇 Som desativado"}
+          </button>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-title">
+            <h3>🎵 Música</h3>
+          </div>
+
+          <button
+            class="secondary"
+            onclick="toggleMusic()"
+          >
+            ${userData.settings.music?"🎵 Música ativada":"🔇 Música desativada"}
+          </button>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-title">
+            <h3>👤 Conta</h3>
+          </div>
+
+          <p class="muted">
+            ${esc(userData.email)}
+          </p>
+
+          <button
+            class="secondary"
+            style="margin-top:12px"
+            onclick="logout()"
+          >
+            🚪 Sair da conta
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+  `;
+}
+
+window.toggleSound=async function(){
+
+  userData.settings.sound=
+    !userData.settings.sound;
+
+  soundEnabled=userData.settings.sound;
+
+  await saveUser();
+
+  renderSettings();
+
+};
+
+window.toggleMusic=async function(){
+
+  userData.settings.music=
+    !userData.settings.music;
+
+  musicEnabled=userData.settings.music;
+
+  if(!musicEnabled)
+    stopMusic();
+
+  await saveUser();
+
+  renderSettings();
+
+};
+
+window.logout=async function(){
+
+  stopMusic();
+
+  clearInterval(timerInterval);
+
+  await setOffline();
+
+  await signOut(auth);
+
+};
+
+/* ============================================================
+   PRESENÇA
+============================================================ */
+
+let presenceInterval=null;
+
+function startPresence(){
+
+  clearInterval(presenceInterval);
+
+  setOnline();
+
+  presenceInterval=setInterval(
+    setOnline,
+    60000
+  );
+
+  window.addEventListener(
+    "beforeunload",
+    setOffline
+  );
+}
+
+async function setOnline(){
+
+  if(!currentUser)return;
+
+  try{
+
+    userData.online=true;
+    userData.lastSeen=Date.now();
+
+    await updateDoc(
+      doc(db,"Usuarios",currentUser.uid),
+      {
+        online:true,
+        lastSeen:Date.now()
+      }
+    );
+
+  }catch(e){}
+}
+
+async function setOffline(){
+
+  if(!currentUser)return;
+
+  try{
+
+    await updateDoc(
+      doc(db,"Usuarios",currentUser.uid),
+      {
+        online:false,
+        lastSeen:Date.now()
+      }
+    );
+
+  }catch(e){}
+}
+
+/* ============================================================
+   CORRIDA DO MILHÃO
+============================================================ */
+
+window.startRace=function(){
+
+  currentPage="race";
+
+  raceState={
+    players:[
+      {
+        name:userData.username,
+        position:0,
+        emoji:"🏎️"
+      }
+    ],
+    running:false,
+    winner:null
+  };
+
+  renderRace();
+
+};
+
+function renderRace(){
+
+  $("main").innerHTML=`
+
+    <section class="screen">
+
+      <div class="container">
+
+        <div class="hero">
+
+          <h2>🏎️ Corrida do Milhão</h2>
+
+          <p>
+            Corrida arcade.
+          </p>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-title">
+            <h3>Modo</h3>
+          </div>
+
+          <div class="grid grid-3">
+
+            <button
+              class="secondary"
+              onclick="setupRace(1)"
+            >
+              👤 Solo
+            </button>
+
+            <button
+              class="secondary"
+              onclick="setupRace(2)"
+            >
+              👥 2 jogadores
+            </button>
+
+            <button
+              class="secondary"
+              onclick="setupRace(3)"
+            >
+              👥 3 jogadores
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="race-track">
+
+          <div class="race-lane"></div>
+
+          ${raceState.players.map((p,i)=>`
+
+            <div
+              class="car ${i===0?"one":"two"}"
+              id="car${i}"
+              style="
+                left:${20+p.position}%;
+                top:${i*130+45}px
+              "
+            >
+              ${p.emoji}
+            </div>
+
+          `).join("")}
+
+        </div>
+
+        <div class="race-controls">
+
+          <button
+            class="primary"
+            onclick="raceBoost()"
+          >
+            🚀 ACELERAR
+          </button>
+
+          <button
+            class="secondary"
+            onclick="navigate('home')"
+          >
+            Sair
+          </button>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-title">
+            <h3>🏁 Corrida</h3>
+          </div>
+
+          <p class="muted">
+            Toque em acelerar para avançar.
+            O primeiro a chegar ao final vence.
+          </p>
+
+          <div
+            id="raceStatus"
+            style="margin-top:12px;font-weight:800"
+          >
+            Pronto para largar!
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+  `;
+}
+
+window.setupRace=function(count){
+
+  const names=[
+    userData.username,
+    "Jogador 2",
+    "Jogador 3"
+  ];
+
+  const emojis=[
+    "🏎️",
+    "🚗",
+    "🏎️"
+  ];
+
+  raceState.players=[];
+
+  for(let i=0;i<count;i++){
+
+    raceState.players.push({
+      name:names[i],
+      position:0,
+      emoji:emojis[i]
+    });
+
+  }
+
+  raceState.running=true;
+
+  renderRace();
+
+  toast(
+    count===1
+      ?"🏁 Boa sorte!"
+      :"🏁 Corrida iniciada!"
+  );
+
+};
+
+window.raceBoost=function(){
+
+  if(!raceState.players.length)return;
+
+  if(!raceState.running){
+
+    setupRace(1);
+
+    return;
+  }
+
+  // Jogador principal
+  raceState.players[0].position=
+    Math.min(
+      82,
+      raceState.players[0].position+
+      Math.floor(Math.random()*12)+7
+    );
+
+  // Adversários
+  for(let i=1;i<raceState.players.length;i++){
+
+    raceState.players[i].position=
+      Math.min(
+        82,
+        raceState.players[i].position+
+        Math.floor(Math.random()*13)+4
+      );
+
+  }
+
+  raceState.players.forEach((p,i)=>{
+
+    const car=$("car"+i);
+
+    if(car)
+      car.style.left=(20+p.position)+"%";
+
+  });
+
+  const winner=
+    raceState.players.find(
+      p=>p.position>=82
+    );
+
+  if(winner){
+
+    raceState.running=false;
+    raceState.winner=winner.name;
+
+    const won=
+      winner.name===userData.username;
+
+    $("raceStatus").textContent=
+      `🏁 ${winner.name} venceu!`;
+
+    if(won){
+
+      userData.xp+=50;
+      userData.coins+=20;
+      userData.stats.victories++;
+
+      saveUser();
+
+      playVictory();
+
+      toast("🏆 Você venceu! +50 XP");
+
+    }else{
+
+      userData.stats.defeats++;
+
+      saveUser();
+
+      toast("😅 Você perdeu a corrida.");
+
+    }
+
+  }
+
+};
+
+/* ============================================================
+   ÁUDIO
+============================================================ */
+
+function ensureAudio(){
+
+  if(!soundEnabled && !musicEnabled)return;
+
+  if(!audioContext){
+
+    try{
+
+      audioContext=
+        new (window.AudioContext||
+        window.webkitAudioContext)();
+
+    }catch(e){
+
+      return;
+    }
+
+  }
+
+  if(audioContext.state==="suspended")
+    audioContext.resume();
+}
+
+function tone(freq,duration,type="sine",volume=.04){
+
+  if(!soundEnabled)return;
+
+  ensureAudio();
+
+  if(!audioContext)return;
+
+  const osc=audioContext.createOscillator();
+  const gain=audioContext.createGain();
+
+  osc.type=type;
+  osc.frequency.value=freq;
+
+  gain.gain.setValueAtTime(
+    volume,
+    audioContext.currentTime
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    .001,
+    audioContext.currentTime+duration
+  );
+
+  osc.connect(gain);
+  gain.connect(audioContext.destination);
+
+  osc.start();
+  osc.stop(
+    audioContext.currentTime+duration
+  );
+}
+
+function playClick(){
+  tone(500,.07,"sine",.035);
+}
+
+function playCorrect(){
+  tone(660,.1,"sine",.05);
+  setTimeout(()=>tone(880,.16,"sine",.05),90);
+}
+
+function playWrong(){
+  tone(180,.18,"sawtooth",.045);
+}
+
+function playTick(){
+  tone(400,.04,"square",.025);
+}
+
+function playVictory(){
+
+  [523,659,784,1046].forEach(
+    (f,i)=>{
+      setTimeout(
+        ()=>tone(f,.2,"sine",.055),
+        i*120
+      );
+    }
+  );
+
+}
+
+function playGameMusic(){
+
+  if(!musicEnabled)return;
+
+  ensureAudio();
+
+  stopMusic();
+
+  if(!audioContext)return;
+
+  const notes=[
+    261.63,
+    329.63,
+    392,
+    523.25,
+    392,
+    329.63
+  ];
+
+  let i=0;
+
+  musicTimer=setInterval(()=>{
+
+    if(!musicEnabled)return;
+
+    tone(
+      notes[i%notes.length],
+      .22,
+      "triangle",
+      .012
+    );
+
+    i++;
+
+  },420);
+
+}
+
+function stopMusic(){
+
+  clearInterval(musicTimer);
+
+  musicTimer=null;
+
+}
+
+/* ============================================================
+   EVENTOS DE INTERAÇÃO
+============================================================ */
+
+document.addEventListener(
+  "pointerdown",
+  ()=>{
+    ensureAudio();
+  },
+  {once:true}
+);
+
+/* ============================================================
+   AUTO-PRESENÇA AO RETORNAR À PÁGINA
+============================================================ */
+
+document.addEventListener(
+  "visibilitychange",
+  ()=>{
+    if(document.visibilityState==="visible"){
+      setOnline();
+    }
+  }
+);
+
+/* ============================================================
+   INICIALIZAÇÃO
+============================================================ */
+
+window.startMillion=startMillion;
+window.startRace=startRace;
+
+</script>
+
+</body>
+</html>
